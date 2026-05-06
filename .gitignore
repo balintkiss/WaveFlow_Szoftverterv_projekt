@@ -16,3 +16,7 @@ npm-debug.log*
 # OS/editor local files
 .DS_Store
 Thumbs.db
+
+# Project-specific - do not commit
+supabase/
+docs/
