@@ -9,10 +9,6 @@ out/
 !.env.example
 .vercel/
 
-# Submission/local files that may contain credentials
-supabase/*.sql
-docs/*.docx
-
 # Logs
 *.log
 npm-debug.log*
