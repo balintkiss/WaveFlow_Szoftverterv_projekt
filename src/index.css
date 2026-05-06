@@ -1,43 +1,118 @@
-:root {
-  --c1: #ff6b35;
-  --c1-hover: #ff8255;
-  --bg: #0d0d0d;
-  --surface: #1a1a1a;
-  --surface2: #242424;
-  --text: #f0ece2;
-  --muted: #888;
-  --border: rgba(255, 255, 255, 0.06);
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 141 73% 42%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 20%;
+    --ring: 141 73% 42%;
+    --radius: 0.5rem;
+    --accent-raw: #1ed760;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply m-0 bg-black text-foreground antialiased;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  input[type="range"] {
+    accent-color: #1ed760;
+  }
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer utilities {
+  .spotify-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+  }
+
+  .spotify-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .spotify-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .spotify-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+  }
+
+  .eq-bar {
+    animation: eq-rise 0.72s ease-in-out infinite alternate;
+  }
+
+  .glass-noise {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0)),
+      radial-gradient(circle at top right, color-mix(in srgb, var(--accent-raw) 30%, transparent), transparent 34%);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 10s linear infinite;
+  }
+
+  .marquee-track span {
+    padding-right: 3rem;
+  }
 }
 
-body {
-  background: #000;
-  font-family: var(--font-body);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@keyframes eq-rise {
+  from {
+    height: 4px;
+    opacity: 0.55;
+  }
+  to {
+    height: 17px;
+    opacity: 1;
+  }
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  font-family: var(--font-body);
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-
-input[type="range"] {
-  outline: none;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
