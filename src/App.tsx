@@ -55,6 +55,9 @@ type SearchFilter =
   | "profiles"
   | "genres";
 
+const menuItems = ["Premium", "Támogatás", "Letöltés"];
+const productionSiteUrl = "https://wave-flow-szoftverterv-projekt-8msmk0tid.vercel.app";
+
 function NavButton({
   icon: Icon,
   label,
@@ -102,7 +105,6 @@ function TopNavbar({
   onSearchChange: (query: string) => void;
   onSignOut: () => void;
 }) {
-  const menuItems = ["Premium", "Támogatás", "Letöltés"];
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -582,9 +584,14 @@ function AuthPage({
 
   async function handleGoogle() {
     setError(null);
+    const redirectOrigin =
+      window.location.hostname === "localhost"
+        ? window.location.origin
+        : productionSiteUrl;
+
     await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin },
+      options: { redirectTo: redirectOrigin },
     });
   }
 
