@@ -219,8 +219,20 @@ function TopNavbar({
   }, []);
 
   return (
-    <header className="sticky top-2 z-40 flex h-14 items-center justify-between gap-3 rounded-none bg-black px-3 text-white md:col-span-2">
-      <div className="flex min-w-0 flex-1 items-center gap-2">
+    <header
+      className={`sticky top-2 z-40 grid h-14 items-center gap-2 rounded-none bg-black px-3 text-white md:col-span-2 lg:flex lg:justify-between lg:gap-3 ${
+        showExpandedMobileSearch
+          ? "grid-cols-1"
+          : "grid-cols-[56px_minmax(0,1fr)_56px] sm:grid-cols-[88px_minmax(0,1fr)_88px]"
+      }`}
+    >
+      {!showExpandedMobileSearch && <div aria-hidden="true" className="lg:hidden" />}
+
+      <div
+        className={`flex min-w-0 items-center gap-2 lg:flex-1 lg:justify-start ${
+          showExpandedMobileSearch ? "justify-center" : "justify-center"
+        }`}
+      >
         <button
           aria-label="WaveFlow"
           className={`flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-black transition ${
@@ -396,7 +408,7 @@ function TopNavbar({
       </nav>
 
       <div
-        className={`shrink-0 items-center gap-2 ${
+        className={`shrink-0 items-center justify-end gap-2 ${
           showExpandedMobileSearch ? "hidden sm:flex" : "flex"
         }`}
       >
@@ -457,7 +469,7 @@ function TopNavbar({
               Regisztráció
             </Button>
             <Button
-              className="h-12 rounded-full bg-white px-6 font-bold text-black hover:scale-105 hover:bg-white md:px-8"
+              className="h-10 rounded-full bg-white px-4 text-sm font-bold text-black hover:scale-105 hover:bg-white sm:h-12 sm:px-6 md:px-8"
               type="button"
               onClick={() => onOpenAuth("login")}
             >
