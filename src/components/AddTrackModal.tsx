@@ -120,9 +120,11 @@ export default function AddTrackModal({ onAdd, onClose }: AddTrackModalProps) {
           <label className="group flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-dashed border-white/20 bg-white/5 text-zinc-400 transition hover:border-primary hover:text-primary">
             {coverPreview ? (
               <img
-                className="h-full w-full object-cover"
+                className="h-full w-full select-none object-cover"
                 src={coverPreview}
                 alt="Borító előnézet"
+                draggable={false}
+                onDragStart={(event) => event.preventDefault()}
               />
             ) : (
               <span className="flex flex-col items-center gap-2 text-sm">

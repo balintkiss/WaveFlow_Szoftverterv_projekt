@@ -51,6 +51,11 @@
   input[type="range"] {
     accent-color: #1ed760;
   }
+
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
 }
 
 @layer utilities {

@@ -40,14 +40,16 @@ export default function CoverImage({ src, alt, className, fallback }: CoverImage
       <img
         ref={imgRef}
         className={cn(
-          "h-full w-full object-cover transition-opacity duration-300",
+          "h-full w-full select-none object-cover transition-opacity duration-300",
           loaded ? "opacity-100" : "opacity-0",
           className,
         )}
         src={src}
         alt={alt}
         decoding="async"
+        draggable={false}
         loading="lazy"
+        onDragStart={(event) => event.preventDefault()}
         onLoad={() => setLoaded(true)}
         onError={() => setError(true)}
       />
