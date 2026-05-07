@@ -126,7 +126,7 @@ export default function Player({
   }, []);
 
   return (
-    <footer className="wave-player flex h-full min-h-0 max-w-full flex-col overflow-hidden bg-black text-white md:grid md:grid-cols-[minmax(0,1fr)_minmax(300px,1.65fr)_minmax(170px,1fr)] md:items-center md:gap-3 md:px-4 md:py-2">
+    <footer className="wave-player flex h-full min-h-0 max-w-full flex-col overflow-hidden bg-black text-white md:grid md:grid-cols-[minmax(0,1fr)_minmax(300px,1.65fr)_minmax(170px,1fr)] md:items-center md:gap-3 md:px-4 md:py-0">
 
       {/* Mobile progress bar — thin strip at the very top of the player */}
       <button
@@ -151,13 +151,13 @@ export default function Player({
       {/* Desktop left col / Mobile row 1: album art + title/artist + heart */}
       <div className="wave-player-info flex min-w-0 items-center gap-3 px-3 pb-1 pt-1 md:min-w-0 md:px-0 md:py-0">
         <div
-          className="wave-player-cover flex size-11 shrink-0 items-center justify-center overflow-hidden rounded bg-zinc-800 ring-2 ring-white/20 md:size-14"
+          className="wave-player-cover flex size-11 shrink-0 items-center justify-center overflow-hidden rounded bg-zinc-800 ring-2 ring-white/20 md:size-12"
           style={{ backgroundColor: currentTrack?.cover ? undefined : currentTrack?.color }}
         >
           <CoverImage
             src={currentTrack?.cover}
             alt={`${currentTrack?.title ?? ""} borító`}
-            fallback={<Music2 className="size-5 text-zinc-500 md:size-6" />}
+            fallback={<Music2 className="size-5 text-zinc-500" />}
           />
         </div>
 
@@ -292,7 +292,7 @@ export default function Player({
 
       {/* Desktop center: full controls + seekbar */}
       <div className="hidden min-w-0 flex-col items-center gap-2 md:flex">
-        <div className="flex items-center justify-center gap-1 sm:gap-2">
+        <div className="flex items-center justify-center gap-1">
           <Button
             aria-label="Keverés"
             className={cn(
@@ -320,15 +320,15 @@ export default function Player({
 
           <Button
             aria-label={isPlaying ? "Szünet" : "Lejátszás"}
-            className="size-10 rounded-full bg-white text-black hover:scale-105 hover:bg-white"
+            className="size-10 rounded-full bg-white text-black hover:scale-105 hover:bg-white md:size-9"
             size="icon"
             type="button"
             onClick={onTogglePlay}
           >
             {isPlaying ? (
-              <Pause className="size-5 fill-black" />
+              <Pause className="size-5 fill-black md:size-4" />
             ) : (
-              <Play className="ml-0.5 size-5 fill-black" />
+              <Play className="ml-0.5 size-5 fill-black md:size-4" />
             )}
           </Button>
 

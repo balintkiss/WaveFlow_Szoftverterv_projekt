@@ -56,7 +56,6 @@ type SearchFilter =
   | "genres";
 
 const menuItems = ["Premium", "Támogatás", "Letöltés"];
-const productionSiteUrl = "https://wave-flow-szoftverterv-projekt-8msmk0tid.vercel.app";
 
 function NavButton({
   icon: Icon,
@@ -222,22 +221,18 @@ function TopNavbar({
 
   return (
     <header
-      className={`sticky top-2 z-40 grid h-14 items-center gap-2 rounded-none bg-black px-3 text-white md:col-span-2 lg:flex lg:justify-between lg:gap-3 ${
-        showExpandedMobileSearch
-          ? "grid-cols-1"
-          : "grid-cols-[56px_minmax(0,1fr)_56px] sm:grid-cols-[88px_minmax(0,1fr)_88px]"
+      className={`sticky top-0 z-40 flex h-14 items-center gap-3 rounded-none bg-black px-3 leading-none text-white md:col-span-2 ${
+        showExpandedMobileSearch ? "justify-center" : "justify-between"
       }`}
     >
-      {!showExpandedMobileSearch && <div aria-hidden="true" className="lg:hidden" />}
-
       <div
-        className={`flex min-w-0 items-center gap-2 lg:flex-1 lg:justify-start ${
-          showExpandedMobileSearch ? "justify-center" : "justify-center"
+        className={`flex h-full min-w-0 flex-1 items-center gap-2 self-center [&>*]:self-center ${
+          showExpandedMobileSearch ? "justify-center" : "justify-start"
         }`}
       >
         <button
           aria-label="WaveFlow"
-          className={`flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-black transition ${
+          className={`flex size-10 shrink-0 items-center justify-center self-center rounded-full bg-white text-black transition ${
             showExpandedMobileSearch ? "w-0 scale-0 opacity-0 sm:w-10 sm:scale-100 sm:opacity-100" : ""
           }`}
           type="button"
@@ -275,7 +270,7 @@ function TopNavbar({
 
         <button
           aria-label="Kezdőlap"
-          className={`flex size-12 shrink-0 items-center justify-center rounded-full text-white transition hover:bg-[#2a2a2a] ${
+          className={`flex size-12 shrink-0 items-center justify-center self-center rounded-full text-white transition hover:bg-[#2a2a2a] ${
             activeView === "home" ? "bg-[#2a2a2a]" : "bg-[#1f1f1f]"
           } ${showExpandedMobileSearch ? "w-0 scale-0 opacity-0 sm:w-12 sm:scale-100 sm:opacity-100" : ""}`}
           type="button"
@@ -287,7 +282,7 @@ function TopNavbar({
         {!user && !mobileSearchOpen && (
           <button
             aria-label="Keresés megnyitása"
-            className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#1f1f1f] text-zinc-300 transition hover:bg-[#2a2a2a] hover:text-white sm:hidden"
+            className="flex size-12 shrink-0 items-center justify-center self-center rounded-full bg-[#1f1f1f] text-zinc-300 transition hover:bg-[#2a2a2a] hover:text-white sm:hidden"
             type="button"
             onClick={openMobileSearch}
           >
@@ -296,7 +291,7 @@ function TopNavbar({
         )}
 
         <div
-          className={`h-12 min-w-0 items-center rounded-full bg-[#1f1f1f] text-zinc-400 ring-1 ring-transparent transition-all duration-300 focus-within:bg-[#242424] focus-within:ring-white/25 hover:bg-[#242424] ${
+          className={`h-12 min-w-0 items-center self-center rounded-full bg-[#1f1f1f] text-zinc-400 ring-1 ring-transparent transition-all duration-300 focus-within:bg-[#242424] focus-within:ring-white/25 hover:bg-[#242424] ${
             !user && !mobileSearchOpen
               ? "hidden max-w-[480px] flex-1 pl-4 pr-2 sm:flex"
               : showExpandedMobileSearch
@@ -389,7 +384,7 @@ function TopNavbar({
         </div>
       </div>
 
-      <nav className="hidden shrink-0 items-center gap-4 text-sm font-bold text-zinc-400 lg:flex">
+      <nav className="hidden h-full shrink-0 items-center self-center gap-4 text-sm font-bold text-zinc-400 lg:flex">
         {menuItems.map((item) => (
           <button
             key={item}
@@ -410,7 +405,7 @@ function TopNavbar({
       </nav>
 
       <div
-        className={`shrink-0 items-center justify-end gap-2 ${
+        className={`h-full shrink-0 items-center self-center gap-2 [&>*]:self-center ${
           showExpandedMobileSearch ? "hidden sm:flex" : "flex"
         }`}
       >
@@ -584,14 +579,11 @@ function AuthPage({
 
   async function handleGoogle() {
     setError(null);
-    const redirectOrigin =
-      window.location.hostname === "localhost"
-        ? window.location.origin
-        : productionSiteUrl;
+    const redirectTo = `${window.location.origin}/auth/callback`;
 
     await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: redirectOrigin },
+      options: { redirectTo },
     });
   }
 

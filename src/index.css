@@ -133,7 +133,7 @@
 
 @media (min-width: 768px) {
   .wave-app-grid {
-    grid-template-rows: 56px minmax(0, 1fr) 96px;
+    grid-template-rows: 56px minmax(0, 1fr) 70px;
     padding-bottom: 0.5rem;
   }
 }
