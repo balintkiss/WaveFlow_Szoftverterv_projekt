@@ -3196,9 +3196,9 @@ function WaveFlow() {
   }
 
   return (
-    <div className="dark h-screen w-screen overflow-hidden bg-black text-zinc-100">
+    <div className="wave-app-shell dark bg-black text-zinc-100">
       <div
-        className="grid h-full grid-cols-1 grid-rows-[56px_minmax(0,1fr)_128px] gap-2 p-2 md:grid-cols-[256px_minmax(0,1fr)]"
+        className="wave-app-grid grid grid-cols-1 gap-2 md:grid-cols-[256px_minmax(0,1fr)]"
         style={
           {
             "--accent-raw": accent,

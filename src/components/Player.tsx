@@ -126,12 +126,12 @@ export default function Player({
   }, []);
 
   return (
-    <footer className="flex flex-col bg-black text-white md:grid md:h-full md:grid-cols-[minmax(0,1fr)_minmax(300px,1.65fr)_minmax(170px,1fr)] md:items-center md:gap-3 md:px-4 md:py-2">
+    <footer className="wave-player flex h-full min-h-0 max-w-full flex-col overflow-hidden bg-black text-white md:grid md:grid-cols-[minmax(0,1fr)_minmax(300px,1.65fr)_minmax(170px,1fr)] md:items-center md:gap-3 md:px-4 md:py-2">
 
       {/* Mobile progress bar — thin strip at the very top of the player */}
       <button
         aria-label="Lejátszás pozíció"
-        className="group w-full md:hidden"
+        className="wave-player-progress group w-full md:hidden"
         type="button"
         onClick={(event) => onSeek(getPointerPercent(event))}
       >
@@ -143,15 +143,15 @@ export default function Player({
         </span>
       </button>
 
-      <div className="flex items-center justify-between px-3 pt-1 text-[11px] font-semibold tabular-nums text-zinc-500 md:hidden">
+      <div className="wave-player-time flex items-center justify-between px-3 pt-1 text-[11px] font-semibold tabular-nums text-zinc-500 md:hidden">
         <span>{formatTime(currentTime)}</span>
         <span>{formatTime(duration)}</span>
       </div>
 
       {/* Desktop left col / Mobile row 1: album art + title/artist + heart */}
-      <div className="flex items-center gap-3 px-3 pb-1 pt-1 md:min-w-0 md:px-0 md:py-0">
+      <div className="wave-player-info flex min-w-0 items-center gap-3 px-3 pb-1 pt-1 md:min-w-0 md:px-0 md:py-0">
         <div
-          className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded bg-zinc-800 ring-2 ring-white/20 md:size-14"
+          className="wave-player-cover flex size-11 shrink-0 items-center justify-center overflow-hidden rounded bg-zinc-800 ring-2 ring-white/20 md:size-14"
           style={{ backgroundColor: currentTrack?.cover ? undefined : currentTrack?.color }}
         >
           <CoverImage
@@ -228,7 +228,7 @@ export default function Player({
       </div>
 
       {/* Mobile row 2: all 5 controls centered */}
-      <div className="flex items-center justify-center gap-1 pb-2 md:hidden">
+      <div className="wave-player-controls flex items-center justify-center gap-1 pb-2 md:hidden">
         <Button
           aria-label="Keverés"
           className={cn(

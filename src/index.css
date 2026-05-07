@@ -25,6 +25,7 @@
     --ring: 141 73% 42%;
     --radius: 0.5rem;
     --accent-raw: #1ed760;
+    --mobile-player-height: 128px;
   }
 
   * {
@@ -35,6 +36,9 @@
   body,
   #root {
     height: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   body {
@@ -60,8 +64,29 @@
 
 @layer utilities {
   .spotify-scrollbar {
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+  }
+
+  .wave-app-shell {
+    height: 100vh;
+    height: 100svh;
+    height: 100dvh;
+    max-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .wave-app-grid {
+    height: 100%;
+    min-height: 0;
+    max-width: 100%;
+    overflow: hidden;
+    grid-template-rows: 56px minmax(0, 1fr) var(--mobile-player-height);
+    padding: 0.5rem;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
   }
 
   .spotify-scrollbar::-webkit-scrollbar {
@@ -103,6 +128,62 @@
 
   .marquee-track span {
     padding-right: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .wave-app-grid {
+    grid-template-rows: 56px minmax(0, 1fr) 96px;
+    padding-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 767px) and (max-width: 370px) {
+  :root {
+    --mobile-player-height: 124px;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  :root {
+    --mobile-player-height: 76px;
+  }
+
+  .wave-player {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 3px minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .wave-player-progress {
+    grid-column: 1 / -1;
+  }
+
+  .wave-player-time {
+    display: none;
+  }
+
+  .wave-player-info {
+    min-width: 0;
+    align-self: stretch;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .wave-player-cover {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .wave-player-controls {
+    align-self: stretch;
+    justify-content: flex-end;
+    gap: 0;
+    padding: 0 0.5rem 0 0;
+  }
+
+  .wave-player .marquee-track span {
+    padding-right: 2rem;
   }
 }
 
