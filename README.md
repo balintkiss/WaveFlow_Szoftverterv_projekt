@@ -136,6 +136,12 @@ A projekt Vercelre egyszerűen feltölthető:
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 4. Indítsd el a deployt.
 
+## Az alkalmazás élesben itt érhető el:
+
+
+
+https://wave-flow-szoftverterv-projekt.vercel.app/
+
 ## Biztonsági megjegyzés
 
 A `.env.local` fájlt nem szabad feltölteni GitHubra. A projekt `.gitignore` fájlja ezt alapból tiltja. Ha nyilvános repóba kerül a projekt, ne kerüljenek bele jelszavak, privát kulcsok vagy éles Supabase service role kulcsok.
